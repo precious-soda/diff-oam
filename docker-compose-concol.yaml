@@ -153,6 +153,19 @@ services:
       oam:
 
 
+  nginx-odlux:
+    image: nginx:latest
+    container_name: nginx-odlux-proxy
+    volumes:
+      - ./nginx-odlux.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "8085:81"
+    depends_on:
+      - odlux
+    networks:
+      - dmz
+      - smo
+
 networks:
   dmz:
     external: true
